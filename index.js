@@ -107,20 +107,23 @@ app.post("/users", async (req, res) => {
       }
      
    })
-//   app.patch('/addTask/:id',async(req,res) => {
-//     const id = req.params.id;
-//     console.log("hello",id);
-//     const filter = {_id : new ObjectId(id)};
-//     const updated = req.body;
-//       const updatedAssignment = {
-//         $set: {
-//           status: "completed"
-//         }
-//       } 
-//       const result = await createCollection.updateOne(filter,updatedAssignment);
-//       res.send(result);
+  app.patch('/addTask/:id',async(req,res) => {
+    const id = req.params.id;
+    
+    const filter = {_id : new ObjectId(id)};
+    const updated = req.body;
+      const updatedAssignment = {
+        $set: {
+          TaskTitle: updated.TaskTitle,
+          description: updated.description,
+          deadLine: updated.deadLine,
+          Priority: updated.Priority
+        }
+      } 
+      const result = await createCollection.updateOne(filter,updatedAssignment);
+      res.send(result);
      
-//    })
+   })
 
 
     // Connect the client to the server	(optional starting in v4.7)
